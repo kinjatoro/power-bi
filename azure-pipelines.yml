@@ -1,0 +1,63 @@
+trigger:
+  branches:
+    include:
+      - main  # Esto activará el pipeline cuando haya un commit en la rama main del frontend
+
+resources:
+  repositories:
+    - repository: cypressRepo  # Alias que usarás para referenciar el repositorio de Cypress
+      type: git
+      name: 'kinjatoro/Smartmove-cypress-fork'  # Ruta del repositorio de Cypress
+
+pool:
+  name: casa  # Pool de agentes en EC2 (o cualquier pool que estés usando)
+
+steps:
+  - checkout: self  # Clona el repositorio del frontend
+
+  # Hacer checkout del repositorio de Cypress
+  - checkout: cypressRepo  # Clona el repositorio de Cypress
+
+  # Instalar Node.js en el agente
+  - task: UseNode@1
+    inputs:
+      version: '18.x'  # Usa la versión 18.x de Node.js
+
+  # Instalar dependencias de Cypress
+  - script: |
+      sudo apt-get update
+      sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+    displayName: 'Instalar dependencias de Cypress'
+
+  # Instalar las dependencias del proyecto (incluyendo Cypress)
+  - script: |
+      npm install
+    displayName: 'Instalar dependencias'
+
+  # Ejecutar las pruebas de Cypress usando npx
+  - script: |
+      npx cypress run --config baseUrl=https://main.djeml4cm1lzmh.amplifyapp.com/
+    displayName: 'Ejecutar pruebas de Cypress'
+
+  # Opción de guardar reportes si es necesario
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFiles: '**/cypress/results/*.xml'
+      testRunTitle: 'Resultados de Cypress'
+      mergeTestResults: true
+
+  # Hacer commit si las pruebas pasan (opcional)
+  - script: |
+      echo "Agregando cambios al repositorio"
+      git config --global user.email "lucaslopezvazquez1@gmail.com"  # Cambia a tu correo
+      git config --global user.name "kinjatoro"  # Cambia a tu usuario
+
+      # Actualizar la rama para evitar conflictos
+      git pull origin main  # Cambia 'main' si usas otra rama
+
+      # Asegúrate de agregar solo los archivos necesarios
+      git add .
+      git commit -m "Actualizando frontend después de pruebas exitosas" || echo "No hay cambios para hacer commit"
+      git push origin main  # Cambia la rama según sea necesario
+    displayName: 'Hacer commit de cambios'
+    condition: succeeded()  # Solo se ejecuta si todos los pasos anteriores son exitosos
