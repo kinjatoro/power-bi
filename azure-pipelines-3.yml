@@ -55,6 +55,6 @@ steps:
       git config user.name "kinjatoro"
       git add -A  # Asegurarse de agregar todos los cambios, pero no incluir carpetas innecesarias
       git commit -m "Commit automático después de pasar Cypress" || echo "No hay cambios para hacer commit"
-      git push https://$(GITHUB_TOKEN_GP.GITHUB_TOKEN)@github.com/kinjatoro/power-bi.git main
+      git push https://$(GITHUB_TOKEN)@github.com/kinjatoro/power-bi.git main
     displayName: 'Confirmar y pushear cambios'
     condition: succeeded()  # Solo si las pruebas pasaron
