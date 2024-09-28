@@ -10,9 +10,18 @@ phases:
     commands:
       - npm run build
 artifacts:
+  base-directory: build  
   files:
-    - '**/*'  # Incluye todos los archivos generados
-  base-directory: build  # Asegúrate de que esta ruta coincida con la salida de tu aplicación
+    - '**/*'  
 cache:
   paths:
     - node_modules/**/*
+frontend:
+  phases:
+    build:
+      commands:
+        - npm run build 
+  artifacts:
+    baseDirectory: build 
+    files:
+      - '**/*'  
