@@ -10,9 +10,18 @@ steps:
   # Clonar el repo del frontend
   - checkout: self  # Esto clona el repo del frontend
 
-  # Crear un directorio temporal fuera del repo del frontend para Cypress
+  # Eliminar directorio cypress-tests existente (por si queda algún remanente)
   - script: |
-      mkdir ../cypress-dir   # Crear un directorio fuera del repo del frontend
+      if [ -d "../cypress-tests" ]; then
+        rm -rf ../cypress-tests
+      fi
+    displayName: 'Eliminar directorio cypress-tests existente'
+
+  # Crear un directorio temporal fuera del repo del frontend para Cypress si no existe
+  - script: |
+      if [ ! -d "../cypress-dir" ]; then
+        mkdir ../cypress-dir   # Crear un directorio fuera del repo del frontend
+      fi
       cd ../cypress-dir      # Cambiar al nuevo directorio
       git clone https://github.com/kinjatoro/Smartmove-cypress-fork.git cypress-tests  # Clonar el repo de Cypress
     displayName: 'Clonar repo de Cypress en un directorio separado'
@@ -41,7 +50,7 @@ steps:
       git pull origin main  # Sincronizar con los últimos cambios
       git config user.email "lucaslopezvazquez1@gmail.com"
       git config user.name "kinjatoro"
-      git add .
+      git add -A  # Asegurarse de agregar todos los cambios, pero no incluir carpetas innecesarias
       git commit -m "Commit automático después de pasar Cypress" || echo "No hay cambios para hacer commit"
       git push origin main
     displayName: 'Confirmar y pushear cambios'
