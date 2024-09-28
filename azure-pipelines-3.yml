@@ -10,10 +10,12 @@ steps:
   # Clonar el repo del frontend
   - checkout: self  # Esto clona el repo del frontend
 
-  # Clonar el repo de Cypress en una carpeta separada
+  # Crear un directorio temporal fuera del repo del frontend para Cypress
   - script: |
-      git clone https://github.com/kinjatoro/Smartmove-cypress-fork.git cypress-tests
-    displayName: 'Clonar repo de Cypress'
+      mkdir ../cypress-dir   # Crear un directorio temporal fuera del repo del frontend
+      cd ../cypress-dir      # Moverse al nuevo directorio
+      git clone https://github.com/kinjatoro/Smartmove-cypress-fork.git cypress-tests  # Clonar el repo de Cypress
+    displayName: 'Clonar repo de Cypress en un directorio separado'
 
   # Instalar dependencias del frontend
   - task: NodeTool@0
@@ -25,19 +27,22 @@ steps:
       npm install
     displayName: 'Instalar dependencias del frontend'
 
-  # Instalar Cypress y ejecutar pruebas desde el directorio de Cypress
+  # Instalar Cypress y ejecutar pruebas desde el nuevo directorio de Cypress
   - script: |
-      cd cypress-tests  # Cambiar al directorio donde clonamos las pruebas
+      cd ../cypress-dir/cypress-tests  # Cambiar al directorio donde clonamos las pruebas
       npm install       # Instalar dependencias de Cypress
       npx cypress run   # Ejecutar las pruebas de Cypress
     displayName: 'Correr pruebas de Cypress'
 
   # Si las pruebas pasan, realizar commit y push
   - script: |
+      echo "Cambiando a la rama main"
+      git checkout main  # Asegurarse de estar en la rama main
+      git pull origin main  # Sincronizar con los últimos cambios
       git config user.email "lucaslopezvazquez1@gmail.com"
       git config user.name "kinjatoro"
       git add .
-      git commit -m "Commit automático después de pasar Cypress"
-      git push
+      git commit -m "Commit automático después de pasar Cypress" || echo "No hay cambios para hacer commit"
+      git push origin main
     displayName: 'Confirmar y pushear cambios'
     condition: succeeded()  # Solo si las pruebas pasaron
