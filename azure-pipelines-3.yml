@@ -4,7 +4,7 @@ trigger:
       - main  # O la rama de tu repo principal donde trabajes
 
 pool:
-  vmImage: 'ubuntu-latest'  # O usa tu agente self-hosted
+  name: casa
 
 steps:
   # Clonar el repo del frontend
