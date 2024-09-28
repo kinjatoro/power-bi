@@ -1,0 +1,43 @@
+trigger:
+  branches:
+    include:
+      - main  # O la rama de tu repo principal donde trabajes
+
+pool:
+  vmImage: 'ubuntu-latest'  # O usa tu agente self-hosted
+
+steps:
+  # Clonar el repo del frontend
+  - checkout: self  # Esto clona el repo del frontend
+
+  # Clonar el repo de Cypress en una carpeta separada
+  - script: |
+      git clone https://github.com/kinjatoro/Smartmove-cypress-fork.git cypress-tests
+    displayName: 'Clonar repo de Cypress'
+
+  # Instalar dependencias del frontend
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '18.20.4'  # Versión de Node.js que usa tu frontend
+    displayName: 'Instalar Node.js'
+
+  - script: |
+      npm install
+    displayName: 'Instalar dependencias del frontend'
+
+  # Instalar Cypress y ejecutar pruebas desde el directorio de Cypress
+  - script: |
+      cd cypress-tests  # Cambiar al directorio donde clonamos las pruebas
+      npm install       # Instalar dependencias de Cypress
+      npx cypress run   # Ejecutar las pruebas de Cypress
+    displayName: 'Correr pruebas de Cypress'
+
+  # Si las pruebas pasan, realizar commit y push
+  - script: |
+      git config user.email "lucaslopezvazquez1@gmail.com"
+      git config user.name "kinjatoro"
+      git add .
+      git commit -m "Commit automático después de pasar Cypress"
+      git push
+    displayName: 'Confirmar y pushear cambios'
+    condition: succeeded()  # Solo si las pruebas pasaron
