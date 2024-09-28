@@ -10,10 +10,10 @@ steps:
   # Clonar el repo del frontend
   - checkout: self  # Esto clona el repo del frontend
 
-  # Eliminar directorio cypress-tests existente (por si queda algún remanente)
+  # Eliminar el directorio cypress-tests existente (si ya existe, lo eliminamos)
   - script: |
-      if [ -d "../cypress-tests" ]; then
-        rm -rf ../cypress-tests
+      if [ -d "../cypress-dir/cypress-tests" ]; then
+        rm -rf ../cypress-dir/cypress-tests
       fi
     displayName: 'Eliminar directorio cypress-tests existente'
 
