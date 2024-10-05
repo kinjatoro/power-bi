@@ -48,8 +48,8 @@ export default function DashboardAppPage() {
         <PowerBIEmbed
           embedConfig={{
             type: 'report',   // Supported types: report, dashboard, tile, visual and qna
-            id: '7a7ba1f1-fcac-4b40-8793-2605844014e7',
-            embedUrl: "https://app.powerbi.com/reportEmbed?reportId=7a7ba1f1-fcac-4b40-8793-2605844014e7&groupId=bd9cea22-9ffa-493d-bbd4-b71b552943ec&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLVNPVVRILUNFTlRSQUwtVVMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7InVzYWdlTWV0cmljc1ZOZXh0Ijp0cnVlfX0%3d",
+            id: '1984ca7a-4a77-4c63-b58c-eb70cf4263fb',
+            embedUrl: "https://app.powerbi.com/reportEmbed?reportId=1984ca7a-4a77-4c63-b58c-eb70cf4263fb&groupId=bd9cea22-9ffa-493d-bbd4-b71b552943ec&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLVNPVVRILUNFTlRSQUwtVVMtcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQiLCJlbWJlZEZlYXR1cmVzIjp7InVzYWdlTWV0cmljc1ZOZXh0Ijp0cnVlfX0%3d&language=en",
             accessToken: tokenPbi, 
             tokenType: models.TokenType.Aad,
             settings: {
