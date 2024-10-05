@@ -1,70 +1,163 @@
-# Getting Started with Create React App
+# PARA CORRER EL PROGRAMA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Instalar NodeJS (https://nodejs.org/en) y VS Code (https://code.visualstudio.com/download)
+2. Abir VS Code
+3. Darle a "clone github repository" y pegar `https://github.com/kinjatoro/banc-g`
+4. Seleccionar la carpeta donde querés que se instale (no es necesario crear una nueva, al clonar el proyecto se crea una carpeta contenedora automáticamente).
+5. Abrir la terminal (CTRL ñ)
+6. Ejecutar en la terminal `npm i`
+7. Ejecutar `npm start`
 
-## Available Scripts
+https://mui.com/material-ui/getting-started/
 
-In the project directory, you can run:
+Probar estilos -> https://bareynol.github.io/mui-theme-creator/
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
+### **TEMPLATES** 
+* DEVIAS -> https://mui.com/store/previews/devias-kit/
+* BERRY -> https://mui.com/store/previews/berry-react-material-admin-free/
+* MANTIS -> https://mui.com/store/previews/mantis-free-react-admin-dashboard-template/
+* MINIMAL -> https://mui.com/store/previews/minimal-dashboard-free/ [Elegimos esta]
+* PAPERBASE -> https://mui.com/store/previews/paperbase/
+* ONE PIRATE -> https://mui.com/store/previews/onepirate/
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### **IMPORTACIONES** 
 
-### `yarn test`
+* TIPOGRAFÍA -> `import {Typography} from '@mui/material';`
+* BOTÓN -> `import {Button} from '@mui/material';`
+* ÍCONOS -> `import {NombreIcono} from '@mui/icons-material';`
+* ICON-BUTTON -> `import {IconButton} from '@mui/material';`
+* TEMA -> `import {createTheme, ThemeProvider} from "@mui/material/styles";`
+* APPBAR -> `import { AppBar } from '@mui/material';`
+* TOOLBAR -> `import { Toolbar } from '@mui/material';`
+* CARD -> `import {Card, CardContent, CardActions} from '@mui/material';`
+* NAVBAR -> `import NavBar from './components/NavBar';`
+* LISTA -> `import {List,ListItem,ListItemIcon,ListItemText,Divider} from '@mui/material';`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+----
 
-### `yarn build`
+### **COMPONENTES PUROS DE MATERIAL UI**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### [BOTÓN](https://mui.com/material-ui/api/button/) `<Button/>`
+* color = 'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning' | string
+* href = "google.com"
+* size = 'small' | 'medium' | 'large' | string
+* variant = 'contained' | 'outlined' | 'text' | string
+* startIcon = {</>}
+* endIcon = {</>}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### [ÍCONOS](https://mui.com/material-ui/api/icon/)
+* color = 'inherit' | 'action' | 'disabled' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | string
+* fontSize = 'inherit' | 'large' | 'medium' | 'small' | string
 
-### `yarn eject`
+NOTA: cada ícono se maneja como componente único, es decir, si para botón tenemos `<Button/>`, para icono tenemos
+`<CreditCardt/>`, `<DoNotDisturb/>`, y así con cada uno.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### [ICON-BUTTON](https://mui.com/material-ui/api/icon-button/)
+Siguen la estructura:
+```javascript 
+<IconButton>
+    <CreditCardt/>
+</IconButton>
+```      
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+No tiene props útiles.
+  
+<br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+#### [TIPOGRAFÍA](https://mui.com/material-ui/api/typography/) `<Typography/>`
+* align = 'center' | 'justify' | 'left' | 'right'
+* variant = 'body1' | 'body2' | 'button' | 'caption' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'inherit' | 'overline' | 'subtitle1' | 'subtitle2' | string
+* color = 'primary' | 'secondary' | 'success'
 
-## Learn More
+<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### [TEMA](https://mui.com/material-ui/customization/theming/#theme-provider) `<ThemeProvider/>`
+Sirve para agregar estilos CSS a cualquier componente React. Consta de dos partes:
+* CreateTheme (va entre los imports y App()):
+```javascript
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#000e35",
+    },
+    secondary: {
+      main: "#97b59d",
+    },
+  },
+});
+```
+* ThemeProvider:
+```javascript
+    <ThemeProvider theme={theme}>
+     <Button color = "secondary">
+        BOTÓN DE PRUEBA
+     </Button>
+    </ThemeProvider>
+```
+<br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### [APPBAR (atómico)](https://mui.com/material-ui/api/app-bar/) `<AppBar/>`
+* position = 'absolute' | 'fixed' | 'relative' | 'static' | 'sticky'
+* color = 'default' | 'inherit' | 'primary' | 'secondary' | 'transparent' | string
+<br>
 
-### Code Splitting
+#### [TOOLBAR](https://mui.com/material-ui/api/toolbar/) `<ToolBar/>`
+* variant = 'dense' | 'regular' | string
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### **COMPONENTES COMPUESTOS**
 
-### Analyzing the Bundle Size
+Los componentes compuestos van en una carpeta aparte dentro del src llamada `components`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+La estructura básica es:
+```javascript
+import React from 'react';
+const Componente = () => {
+    return (
+        <div>
+        </div>
+    )
+}
+export default Componente;
+```
 
-### Making a Progressive Web App
+<br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### [NAVBAR - AppBar Compuesto](https://mui.com/material-ui/react-app-bar/)
 
-### Advanced Configuration
+Estructura básica del NavBar:
+```javascript
+    <AppBar position="static">
+        <Toolbar>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+        </Toolbar>
+      </AppBar>
+```
+<br>
 
-### Deployment
+#### [CARD (compuesto)](https://mui.com/material-ui/react-card/) `<Card/>` `<CardContent/>` `<CardActions/>`
+Estructura básica de la carta:
+```javascript
+<Card>
+  <CardActionArea> 
+        <CardMedia/>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+        <CardContent>
 
-### `yarn build` fails to minify
+        </CardContent>
+  </CardActionArea>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  <CardActions>
+      
+  </CardActions>
+</Card>
+```
+<br>
+
