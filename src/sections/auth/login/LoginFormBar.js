@@ -46,7 +46,6 @@ export default function LoginFormBar() {
 
   const handleClick = () => {
     navigate('/inicio');
-    setAuth(true);
   };
 
   const handleClick2 = () => {
@@ -206,7 +205,7 @@ export default function LoginFormBar() {
 
         
         <TextField name="correo"
-           label="Correo electrónico"
+           label="Usuario"
            value={email}
            onChange={(e) => setEmail(e.target.value)}
            />
@@ -234,7 +233,7 @@ export default function LoginFormBar() {
         <Checkbox name="remember" label="Remember me" /> 
         <Typography variant="subtitle2">
         Recordar mi usuario y contraseña</Typography>
-        <Link variant="subtitle2" underline="hover" sx={{pl: 4, cursor: 'pointer',textAlign: "right"}} onClick={handleClick2}>
+        <Link variant="subtitle2" underline="hover" sx={{pl: 4, cursor: 'pointer',textAlign: "right"}} >
           ¿Olvidaste tu contraseña? 
         </Link>
       </Stack>
