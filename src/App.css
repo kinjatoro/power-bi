@@ -139,8 +139,8 @@
 }
 
 
-.color-change {
-  animation: color-change-animation 4s linear infinite; 
+.color-change, .anim-rect {
+  animation: unified-color-change-animation 4s linear infinite;
 }
 
 @media (max-width: 1200px) {
@@ -166,3 +166,45 @@
   }
 }
 
+@keyframes color-change-animation2 {
+  0% {
+    fill: #000000;
+  }
+  25% {
+    fill: #1976D2;
+  }
+  50% {
+    fill: #1976d2; 
+  }
+  75% {
+    fill: #1976D2;
+  }
+  100% {
+    fill: #000000;
+  }
+}
+
+
+
+@keyframes unified-color-change-animation {
+  0% {
+    fill: #000000; /* Color inicial para los rectángulos */
+    color: #212B36; /* Color inicial para el texto */
+  }
+  25% {
+    fill: #1976D2;
+    color: #1976D2;
+  }
+  50% {
+    fill: #1976D2;
+    color: #1976D2;
+  }
+  75% {
+    fill: #1976D2;
+    color: #1976D2;
+  }
+  100% {
+    fill: #000000;
+    color: #212B36;
+  }
+}
