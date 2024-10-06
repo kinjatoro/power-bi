@@ -26,7 +26,7 @@ steps:
         mkdir ../cypress-dir   # Crear un directorio fuera del repo del frontend
       fi
       cd ../cypress-dir      # Cambiar al nuevo directorio
-      git clone https://github.com/kinjatoro/Smartmove-cypress-fork.git cypress-tests  # Clonar el repo de Cypress
+      git clone https://github.com/FacuDePaul/Smartmove-cypress.git cypress-tests  # Clonar el repo de Cypress
     displayName: 'Clonar repo de Cypress en un directorio separado'
 
   # Instalar dependencias del frontend
