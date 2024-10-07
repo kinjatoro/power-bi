@@ -1,17 +1,16 @@
 variables:
-  - group: GITHUB_TOKEN_GP  # Reemplaza con el nombre de tu grupo de variables
+  - group: GITHUB_TOKEN_GP 
 
 trigger:
   branches:
     include:
-      - main  # O la rama de tu repo principal donde trabajes
+      - main  
 
 pool:
   name: casa
 
 steps:
-  # Clonar el repo del frontend
-  - checkout: self  # Esto clona el repo del frontend
+  - checkout: self 
 
   # Eliminar el directorio cypress-tests existente (si ya existe, lo eliminamos)
   - script: |
@@ -32,7 +31,7 @@ steps:
   # Instalar dependencias del frontend
   - task: NodeTool@0
     inputs:
-      versionSpec: '18.20.4'  # Versión de Node.js que usa tu frontend
+      versionSpec: '18.20.4'  
     displayName: 'Instalar Node.js'
 
   - script: |
