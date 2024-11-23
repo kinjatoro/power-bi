@@ -66,9 +66,10 @@ export default function LandingPage() {
   const iconoActual = iconos[iconoActualIndex];
 
   useEffect(() => {
+    
     // Verifica si existe un token JWT en la cookie
     const jwtToken = getJwtToken();
-    
+    console.log(jwtToken);
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       setDecodedToken(jwtDecode(jwtToken).rol);
