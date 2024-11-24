@@ -13,7 +13,7 @@ export function PropietarioProvider({ children }) {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      if (decodedToken.rol_inmuebles === "usuarios"){
+      if (decodedToken.rol_contable?.toLowerCase() === 'propietario' || decodedToken.rol_contable?.toLowerCase() === 'propietario' || decodedToken.rol_logistica?.toLowerCase() === 'propietario'){
         setPropietario(true);
       }
 
@@ -22,7 +22,7 @@ export function PropietarioProvider({ children }) {
 
 
   function getJwtToken() {
-    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('token='));
     return jwtCookie ? jwtCookie.split('=')[1] : null;
   }
 

@@ -13,7 +13,7 @@ export function CEOProvider({ children }) {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      if (decodedToken.rol_legales?.toLowerCase() === "ceo" || decodedToken.rol_admin_int?.toLowerCase() === "ceo")
+      if (decodedToken.rol_legales?.toLowerCase() === "ceo" || decodedToken.rol_admin_int?.toLowerCase() === "ceo" || decodedToken.rol_contable?.toLowerCase() === "ceo")
         {
         setCEO(true);
       }
@@ -23,7 +23,7 @@ export function CEOProvider({ children }) {
 
 
   function getJwtToken() {
-    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('token='));
     return jwtCookie ? jwtCookie.split('=')[1] : null;
   }
 

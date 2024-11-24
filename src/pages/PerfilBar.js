@@ -36,7 +36,7 @@ const DATOS = {
 export default function PerfilBar() {
 
 function getJwtToken() {
-  const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+  const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('token='));
   return jwtCookie ? jwtCookie.split('=')[1] : null;
 }
 

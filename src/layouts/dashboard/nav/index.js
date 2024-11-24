@@ -79,8 +79,9 @@ export default function Nav({ openNav, onCloseNav }) {
   const {mudanzas, setMudanzas} = useMudanzas();
   const {propietario, setPropietario} = usePropietario();
 
+
   function getJwtToken() {
-    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+    const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('token='));
     return jwtCookie ? jwtCookie.split('=')[1] : null;
   }
   
@@ -255,7 +256,7 @@ export default function Nav({ openNav, onCloseNav }) {
      </Box> 
 
          
-       {/* {auth ? (
+        {auth ? (
           <p>Auth es verdadera.</p>
         ) : (
           <p>Auth es falsa.</p>
@@ -289,7 +290,7 @@ export default function Nav({ openNav, onCloseNav }) {
           <p>empleado es verdadera.</p>
         ) : (
           <p>empleado es falsa.</p>
-        )}  */}
+        )}  
     
 
         

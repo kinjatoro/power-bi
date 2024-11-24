@@ -165,7 +165,7 @@ export default function LoginFormBar() {
 
     // extrae el token de la cookie
     function getJwtToken() {
-      const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('jwtToken='));
+      const jwtCookie = document.cookie.split('; ').find(row => row.startsWith('token='));
       return jwtCookie ? jwtCookie.split('=')[1] : null;
     }
 

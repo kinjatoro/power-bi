@@ -34,9 +34,47 @@ import POSTS from '../_mock/blog';
 import { useAuth } from '../Auth'
 import { useMyBar } from '../TengoBarAuth'
 
+
+import {useCEO} from '../AuthCEO'
+import {useLegales} from '../AuthLegales'
+import {useMudanzas} from '../AuthMudanzas'
+import {usePropietario} from '../AuthPropietario'
+import {useEmpleado} from '../AuthEmpleado'
+
 // ----------------------------------------------------------------------
 
 
+const ROLE_PERMISSIONS = {
+  ceo: ['CEO', 'Legales', 'Mudanzas', 'Propietario', 'Empleado', 'Inquilino'],
+  empleado: ['Mudanzas', 'Empleado', 'Inquilino'],
+  mudanzas: ['Mudanzas', 'Inquilino'],
+  propietario: ['Mudanzas', 'Propietario', 'Inquilino'],
+  legales: ['Legales', 'Mudanzas', 'Inquilino'],
+  inquilino: ['Mudanzas', 'Inquilino'],
+};
+
+const CARD_VISIBLE_BY = {
+  ceo: ['CEO'],
+  empleado: ['Empleado', 'CEO'],
+  propietario: ['Propietario', 'CEO'],
+  legales: ['Legales', 'CEO'],
+  mudanzas: ['CEO', 'Empleado', 'Propietario', 'Legales', 'Inquilino', 'Mudanzas'],
+  inquilino: ['CEO', 'Empleado', 'Propietario', 'Legales', 'Mudanzas', 'Inquilino'],
+};
+
+function getUserRole({ CEO, empleado, legales, mudanzas, propietario, auth }) {
+  if (CEO) return 'ceo';
+  if (empleado) return 'empleado';
+  if (legales) return 'legales';
+  if (mudanzas) return 'mudanzas';
+  if (propietario) return 'propietario';
+  if (auth) return 'inquilino';
+  return null; // Si ningún rol está definido
+}
+function getFilteredCards(role, posts) {
+  const allowedCards = ROLE_PERMISSIONS[role] || [];
+  return posts.filter((post) => allowedCards.includes(post.title));
+}
 
 
 
@@ -48,62 +86,27 @@ export default function BlogPage() {
   const [EVENTOS, setEVENTOS] = useState([]);
   const [URL, setURL] = useState("https://music-lovers-production.up.railway.app/business/events/filter/?");
 
-  useEffect(() => {
-    handleLogin();
-  }, []);
-
-  const handleLogin = async () => {
-
-    try {
-      let newURL = "https://music-lovers-production.up.railway.app/business/events/filter/?";
-  
-      if (dia && mes && anio) {
-
-        const fecha1 = `mindate=${anio}-${mes}-${dia}&`;
-        newURL += fecha1;
-      }
-  
-      if (dia2 && mes2 && anio2) {
-
-        const fecha2 = `maxdate=${anio2}-${mes2}-${dia2}&`;
-        newURL += fecha2;
-      }
-  
-      if (price) {
-       
-        const fecha3 = `minprice=${price}&`;
-        newURL += fecha3;
-      }
-
-      if (price2) {
-        
-        const fecha4 = `maxprice=${price2}&`;
-        newURL += fecha4;
-      }
-      if (selectedGenres.length > 0) {
-        const generos = selectedGenres.map((genero) => `genre=${genero}`).join('&');
-        newURL += `${generos}&`;
-      }
-      
-  
-      await setURL(newURL); // Actualiza URL de manera síncrona
-
-
-  
-      const response = await axios.get(newURL); // Usa la nueva URL
-
-      const aux = response.data;
-      setEVENTOS(aux);
-      setFilteredBlog(aux);
-    
-    } catch (error) {
-      console.error('Ocurrió un error al intentar cargar los eventos', error);
-    }
-    setOpenFilter(false);
-  };
   
 
 
+ 
+  const { auth, setAuth } = useAuth(); // inquilino
+  const {CEO, setCEO} = useCEO();
+  const {empleado, setEmpleado} = useEmpleado();
+  const {legales} = useLegales();
+  const {mudanzas, setMudanzas} = useMudanzas();
+  const {propietario, setPropietario} = usePropietario();
+
+   // Función para filtrar las cards
+
+
+  const userRole = getUserRole({ CEO, empleado, legales, mudanzas, propietario, auth });
+  // Filtra las cards visibles según el rol
+  const filteredCards = getFilteredCards(userRole, POSTS);
+
+  const [filteredBlog, setFilteredBlog] = useState();
+ 
+ 
 
 
   const [dia, setDia] = useState("");
@@ -125,7 +128,7 @@ export default function BlogPage() {
 
   const [openFilter, setOpenFilter] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredBlog, setFilteredBlog] = useState(POSTS);
+  
 
   
   const [open, setOpen] = useState(null);
@@ -384,7 +387,7 @@ export default function BlogPage() {
         </Stack>
 
         <Grid container spacing={3}>
-          {filteredBlog.map((POSTS, index) => (
+          {filteredCards.map((POSTS, index) => (
             <BlogPostCard post={POSTS} index={index} />
           ))}
         </Grid>
@@ -743,7 +746,7 @@ export default function BlogPage() {
 
             variant="contained"
             startIcon={<Iconify icon="ic:round-clear-all" />}
-            onClick={handleLogin}
+           
           >
             Buscar
           </Button>
