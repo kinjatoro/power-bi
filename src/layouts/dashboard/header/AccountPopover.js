@@ -44,7 +44,6 @@ export default function AccountPopover() {
 
   const handleInicio = () => {
     setOpen(null);
-    navigate('/inicio');
     window.location.href = 'http://usuarios.smartmove.com.ar/userProfile';
     
   };
