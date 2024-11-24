@@ -63,11 +63,12 @@ const CARD_VISIBLE_BY = {
 };
 
 function getUserRole({ CEO, empleado, legales, mudanzas, propietario, auth }) {
+  
   if (CEO) return 'ceo';
   if (empleado) return 'empleado';
   if (legales) return 'legales';
-  if (mudanzas) return 'mudanzas';
   if (propietario) return 'propietario';
+  if (mudanzas) return 'mudanzas';
   if (auth) return 'inquilino';
   return null; // Si ningún rol está definido
 }
