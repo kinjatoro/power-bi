@@ -118,12 +118,12 @@ export default function LandingPage() {
           <Grid xs={12} lg={6}>  
             <Grid className="Altura" sx={{display: "flex", flexDirection: 'column', alignItems: 'center', justifyContent: "center", ml:3}}>
               <Grid>
-                <Typography variant='h1' align = 'center'>Bienvenido a <br /><span className="color-change">SmartMove</span></Typography>
-                <Typography variant='h4' align='center' sx={{mt:1}}>Tu nuevo hogar te está esperando.</Typography>
+                <Typography variant='h1' align = 'center'>Analíticas<br /><span className="color-change">SmartMove</span></Typography>
+                <Typography variant='h4' align='center' sx={{mt:1}}>Visualizá los mejores gráficos.</Typography>
               </Grid>
               
               <Grid sx={{display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: "center", mt:3}}>
-                <Button variant = "contained" size ='large' sx={{mx:2}} onClick={handleClick} >Hacé click para ingresar</Button> 
+                <Button variant = "contained" size ='large' sx={{mx:2}} onClick={handleClick} >Hacé click para ver</Button> 
                 
               </Grid>
             </Grid>

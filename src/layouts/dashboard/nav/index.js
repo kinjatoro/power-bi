@@ -115,7 +115,7 @@ export default function Nav({ openNav, onCloseNav }) {
   }, [pathname]);
 
   const handleClick = () => {
-    navigate('/login/cliente');
+    window.location.href = 'http://usuarios.smartmove.com.ar/login';
   }
 
   const handleClick2 = () => {
@@ -170,9 +170,9 @@ export default function Nav({ openNav, onCloseNav }) {
        </Typography>
       </Box>
 
-      
+      {auth ? (<NavSection data={navConfigLoggedCEO} />) : (<><NavSection data={navConfig}/></>)}
  
-      { <NavSection data={navConfigLoggedCEO} />}
+
    
 
 
@@ -195,8 +195,6 @@ export default function Nav({ openNav, onCloseNav }) {
                 </Typography>
               </Box><Button onClick={handleClick} variant="contained" disableElevation>
                   Iniciar sesión
-                </Button><Button onClick={handleClick2} variant='outlined'>
-                  Registarme
                 </Button></Stack></Box></>)}
 
                 <Divider sx={{mt: 5, mr: 2, ml: 2}}/>
