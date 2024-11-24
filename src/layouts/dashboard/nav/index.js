@@ -101,7 +101,7 @@ export default function Nav({ openNav, onCloseNav }) {
     setAuth(false);
     setMyBar(false);
     setOnBoar(true);
-    navigate('/inicio');
+    window.location.href = 'http://usuarios.smartmove.com.ar/login';
   };
 
   useEffect(() => {
