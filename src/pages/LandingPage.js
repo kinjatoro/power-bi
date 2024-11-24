@@ -86,7 +86,7 @@ export default function LandingPage() {
 
   const handleClick = () => {
     console.log(decodedToken);
-    navigate(`/${decodedToken}`);  // para ver publicaciones (alumno)
+    navigate('/menu');  // para ver publicaciones (alumno)
   }
   
   const handleClick2 = () => {

@@ -35,13 +35,15 @@ export default function AccountPopover() {
     setAuth(false);
     setMyBar(false);
     document.cookie = `jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    navigate('/inicio');
+    window.location.href = 'http://usuarios.smartmove.com.ar/login';
 
   };
 
   const handleInicio = () => {
     setOpen(null);
     navigate('/inicio');
+    window.location.href = 'http://usuarios.smartmove.com.ar/userProfile';
+    
   };
 
   const handleEventos = () => {
@@ -135,22 +137,12 @@ export default function AccountPopover() {
           },
         }}
       >
-        <Box sx={{ my: 1.5, px: 2.5 }}>
-          <Typography variant="subtitle2" noWrap>
-          {auth ? ( myBar ? (<>{username} </>) : (<>{username}</>)) : (<>{accountNo.displayName} </>)}  
-   
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {auth ? ( myBar ? (<>{email} </>) : (<>{email}</>)) : (<></>)}
-          </Typography>
-        </Box>
-
-        <Divider sx={{ borderStyle: 'dashed' }} />
+       
 
         <Stack sx={{ p: 1 }}>
           
             <MenuItem onClick={handleInicio}>
-              Inicio
+              Perfil usuario
             </MenuItem>
 
             

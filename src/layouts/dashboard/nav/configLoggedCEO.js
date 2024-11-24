@@ -11,7 +11,7 @@ const navConfig = [
   },
   {
     title: 'Menú',
-    path: '/ceo',
+    path: '/menu',
     icon: <Iconify icon={'material-symbols-light:business-center-sharp'} />
   },
 ];

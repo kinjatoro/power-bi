@@ -167,54 +167,11 @@ export default function Nav({ openNav, onCloseNav }) {
        </Typography>
       </Box>
 
-
-      {auth ? (
-      <Box sx={{ mb: 2, mx: 2.5 }}>
-        <Link underline="none">
-          <StyledAccount>
-
-          {!myBar ? (
-          <><Avatar src={logo} alt="photoURL" /></>
-        ) : (
-          <><Avatar src={logo} alt="photoURL" /></>
-        )}
-
-            
-
-            <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" onClick={handleClick3} sx={{ color: 'text.primary',cursor: 'pointer'  }}>
-              {!myBar ? (
-                <>{getFileDisplayName(username)}</>
-                ) : (
-              <>{getFileDisplayName(username)}</>
-             )}
-                
-              </Typography>
-
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account.role}
-              </Typography>
-            </Box>
-          </StyledAccount>
-        </Link>
-      </Box>) : (<></>)}
-
       
-      {
-  auth && (
-    <>
-      {CEO && <NavSection data={navConfigLoggedCEO} />}
-      {legales && <NavSection data={navConfigLoggedLegales} />}
-      {mudanzas && <NavSection data={navConfigLoggedMudanza} />}
-      {propietario && <NavSection data={navConfigLoggedPropietario} />}
-      {empleado && <NavSection data={navConfigLoggedEmpleado} />}
+ 
+      { <NavSection data={navConfigLoggedCEO} />}
+   
 
-      {!CEO && !legales && !mudanzas && !propietario && !empleado && (
-        <NavSection data={navConfigLogged} />
-      )}
-    </>
-  )
-}
 
 
   
@@ -255,6 +212,7 @@ export default function Nav({ openNav, onCloseNav }) {
          )}      </Stack>
      </Box> 
 
+         {/*
          
         {auth ? (
           <p>Auth es verdadera.</p>
@@ -290,7 +248,7 @@ export default function Nav({ openNav, onCloseNav }) {
           <p>empleado es verdadera.</p>
         ) : (
           <p>empleado es falsa.</p>
-        )}  
+        )}  */}
     
 
         

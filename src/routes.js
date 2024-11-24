@@ -67,7 +67,7 @@ export default function Router() {
       children: [
         { element: <Navigate to="/inicio" />, index: true },
         { path: 'inicio', element: <LandingPage /> },
-        { path: 'ceo', element: <BlogPage /> },
+        { path: 'menu', element: <BlogPage /> },
         { path: 'bares', element: <BaresPage /> },
         { path: 'eventos/:idBlog', element: <IndividualBlog />,},
         { path: 'bares/:idBar', element: <IndividualBar />,},
