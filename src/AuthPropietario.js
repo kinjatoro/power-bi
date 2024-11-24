@@ -13,7 +13,7 @@ export function PropietarioProvider({ children }) {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      if (decodedToken.rol_inmuelbes === "propietario"){
+      if (decodedToken.rol_inmuebles === "usuarios"){
         setPropietario(true);
       }
 
