@@ -34,7 +34,7 @@ export default function AccountPopover() {
     setOpen(null);
     setAuth(false);
     setMyBar(false);
-    document.cookie = `jwtToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     window.location.href = 'http://usuarios.smartmove.com.ar/login';
 
   };
