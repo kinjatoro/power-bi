@@ -98,6 +98,9 @@ export default function Nav({ openNav, onCloseNav }) {
   const handleAuth = () => {
     onCloseNav();
     document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=smartmove.com.ar`;
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=usuarios.smartmove.com.ar";
+    document.cookie = `token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;`;
     setAuth(false);
     setMyBar(false);
     setOnBoar(true);
