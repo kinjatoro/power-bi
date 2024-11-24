@@ -40,7 +40,7 @@ export default function DashboardAppPage() {
       </Helmet>
 
       <Container maxWidth="xl" sx={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
-        <Typography variant="h4" sx={{ mb: 5,mt:-5 }}>
+        <Typography variant="h4" sx={{ mb: 5,mt:-4 }}>
         Dashboards - Área Mudanzas
         </Typography>
 
