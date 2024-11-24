@@ -13,7 +13,7 @@ export function EmpleadoProvider({ children }) {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      if (decodedToken.rol === "empleado"){
+      if (decodedToken.is_admin === true){
         setEmpleado(true);
       }
 

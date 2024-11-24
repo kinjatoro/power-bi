@@ -13,10 +13,7 @@ export function MudanzasProvider({ children }) {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      if (decodedToken.rol === "mudanzas"){
-        setMudanzas(true);
-      }
-
+      setMudanzas(true);
     }
   }, []);
 

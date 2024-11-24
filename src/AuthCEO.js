@@ -13,7 +13,8 @@ export function CEOProvider({ children }) {
     // decodifica el token (si lo encuentra)
     if (jwtToken) {
       const decodedToken = jwtDecode(jwtToken);
-      if (decodedToken.rol === "CEO"){
+      if (decodedToken.rol_legales?.toLowerCase() === "ceo" || decodedToken.rol_admin_int?.toLowerCase() === "ceo")
+        {
         setCEO(true);
       }
 
