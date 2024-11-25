@@ -7,6 +7,7 @@ import { Grid, Container, Typography } from '@mui/material';
 import { PowerBIEmbed } from 'powerbi-client-react';
 import { models } from 'powerbi-client';
 import {tokenPbi} from '../tokenPbi';
+import ButtonGroup from '../sections/@dashboard/blog/ButtonGroup';
 
 
 
@@ -48,6 +49,7 @@ export default function DashboardAppPage() {
         <iframe title="Admin. Interna" width="1024" height="612" src="https://app.powerbi.com/view?r=eyJrIjoiZjBjYjdkNWEtZDdhOS00YmRkLTkyYzQtOGQ2ZTE1YWQ2MDljIiwidCI6IjVhMmI2OTI0LTFhZDItNDBkNy1iZjZjLWYwN2U3MGNjN2MwMCIsImMiOjR9" frameBorder="0" allowFullScreen="true"/>
 
         </Grid>
+        <ButtonGroup  />
       </Container>
     </>
   );
